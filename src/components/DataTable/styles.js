@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import TableRowUI from "@material-ui/core/TableRow";
-import TableUI from "@material-ui/core/Table";
-import TableHeaderUI from "@material-ui/core/TableHead";
-import TableBodyUI from "@material-ui/core/TableBody";
+import TableRowUI from "@mui/material/TableRow";
+import TableUI from "@mui/material/Table";
+import TableHeaderUI from "@mui/material/TableHead";
+import TableBodyUI from "@mui/material/TableBody";
 
-import TableCellUI from "@material-ui/core/TableCell";
+import TableCellUI from "@mui/material/TableCell";
 
 export const Col = styled.div`
   flex: ${(props) => props.size};

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ButtonUI from '@material-ui/core/Button';
+import ButtonUI from '@mui/material/Button';
 
 // eslint-disable-next-line import/prefer-default-export
 export const Button = styled(ButtonUI)`

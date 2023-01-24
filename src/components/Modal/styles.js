@@ -5,7 +5,7 @@ import {
   DialogTitle as DialogTitleUI,
   DialogContent as DialogContentUI,
   DialogActions as DialogActionsUI,
-} from '@material-ui/core';
+} from '@mui/material';
 
 export const ModalContainer = styled(DialogUI)``;
 export const Title = styled(DialogTitleUI)``;

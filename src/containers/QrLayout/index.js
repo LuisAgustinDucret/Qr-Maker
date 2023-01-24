@@ -12,7 +12,7 @@ import {
   CardMiddle,
   CardBottom,
 } from "./styles";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 import { QrsDataTable } from "../../entities";
 import { getKeys, mapPropertiesToColumns } from "../../utils";
 import { suscribeQrs, setModalVisibility } from "../../store/actions/";
