@@ -2,8 +2,7 @@ import { Provider, useSelector } from "react-redux";
 import {
   ThemeProvider,
   createTheme,
-} from "@material-ui/core/styles";
-import { palette as colors } from "../constants";
+} from "@mui/material/styles";
 import GlobalStyles from "../global-styles";
 import { AppProps } from "next/app";
 
