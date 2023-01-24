@@ -16,7 +16,7 @@ export const suscribeToCategorias = (callback) => {
 };
 const qrsCollection = collection(db, "qrs");
 
-export const QRGenerator = async (e) => {
+/*export const QRGenerator = async (e) => {
   e.preventDefault();
   const docRef = await addDoc(qrsCollection, {
     evento: evento,
@@ -27,8 +27,8 @@ export const QRGenerator = async (e) => {
     cantidadVecesUsado: cantidadVecesUsado,
     cantidadGenerada: cantidadGenerada,
   });
-  setDocId(docRef.id);
-};
+  //setDocId(docRef.id);
+};*/
 
 export const saveQr = async ({
   evento,
@@ -40,18 +40,16 @@ export const saveQr = async ({
   cantidadGenerada,
 }) => {
   try {
-    const newQrId = db.ref().child("Qrs").push().key;
-    console.log("dedscripcion desde service", evento);
-    return await db.ref().child(`Qrs/${newQrId}`).set({
-      id: newQrId,
-      evento,
-      fechaLimite,
-      tipoUso,
-      creador,
-      destinatario,
-      cantidadVecesUsado,
-      cantidadGenerada,
+    const docRef = await addDoc(qrsCollection, {
+      evento: evento,
+      fechaLimite: fechaLimite,
+      creador: creador,
+      destinatario: destinatario,
+      tipoUso: tipoUso,
+      cantidadVecesUsado: cantidadVecesUsado,
+      cantidadGenerada: cantidadGenerada,
     });
+   // setDocId(docRef.id);
   } catch (error) {
     throw error;
   }

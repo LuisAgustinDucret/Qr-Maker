@@ -1,8 +1,8 @@
 import * as React from "react";
 import { getKeys } from "../../utils"
-import EditIcon from "@material-ui/icons/Edit";
+import EditIcon from '@mui/icons-material/Edit'
 import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/DeleteForever";
+import DeleteIcon from "@mui/icons-material/DeleteForever";
 
 import { Table, TableRow, TableHeader, TableCell, TableBody } from "./styles";
 //import { Row as TableRow } from "./styles";

@@ -1,8 +1,6 @@
 import { Provider, useSelector } from "react-redux";
 import {
-  createMuiTheme,
   ThemeProvider,
-  responsiveFontSizes,
   createTheme,
 } from "@material-ui/core/styles";
 import { palette as colors } from "../constants";
