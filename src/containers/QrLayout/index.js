@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { saveQr, updateQr, deleteQr } from "../../services";
+import { saveQr, updateQr, deleteQr, QrGenerator } from "../../services";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import TextField from "../../components/TextField";
@@ -15,8 +15,7 @@ import {
 import Typography from "@material-ui/core/Typography";
 import { QrsDataTable } from "../../entities";
 import { getKeys, mapPropertiesToColumns } from "../../utils";
-import { suscribeCategories, setModalVisibility } from "../../store/actions/";
-import { useTheme } from "@material-ui/core/styles";
+import { suscribeQrs, setModalVisibility } from "../../store/actions/";
 
 const QrLayout = () => {
   const [id, setId] = useState("");
@@ -30,9 +29,10 @@ const QrLayout = () => {
 
   const dispatch = useDispatch();
 
-  const { qrs,
-    modal: { isModalOpen, mode }
-   } = useSelector(({ qr }) => {
+  const {
+    qrs,
+    modal: { isModalOpen, mode },
+  } = useSelector(({ qr }) => {
     console.log("qrs", qr);
     return {
       qrs: qr.qrs,
@@ -67,18 +67,35 @@ const QrLayout = () => {
       updateQr({
         id,
         evento,
-        fechaLimite: new Date(),
+        fechaLimite,
+        tipoUso,
+        creador,
+        destinatario,
+        cantidadVecesUsado,
+        cantidadGenerada,
       });
     } else {
       saveQr({
         evento,
         fechaLimite,
+        tipoUso,
+        creador,
+        destinatario,
+        cantidadVecesUsado,
+        cantidadGenerada,
       });
     }
-
     closeModal();
     resetValues();
-  }, [id, fechaLimite]);
+  }, [
+    evento,
+    fechaLimite,
+    tipoUso,
+    creador,
+    destinatario,
+    cantidadVecesUsado,
+    cantidadGenerada,
+  ]);
 
   const modificarQr = (index) => {
     const value = qrs.find((item, i) => {
@@ -189,7 +206,7 @@ const QrLayout = () => {
     creador,
     destinatario,
     cantidadVecesUsado,
-    cantidadGenerada
+    cantidadGenerada,
   ]);
 
   const renderModalControls = useCallback(() => {
@@ -258,7 +275,7 @@ const QrLayout = () => {
             />
           </CardMiddle>
           <CardBottom>
-            <Button text="Volver"  width={"17%"} />
+            <Button text="Volver" width={"17%"} />
             <Button
               text="Agregar"
               onClick={() => openModal("create")}

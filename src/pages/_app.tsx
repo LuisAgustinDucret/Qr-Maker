@@ -3,6 +3,7 @@ import {
   createMuiTheme,
   ThemeProvider,
   responsiveFontSizes,
+  createTheme,
 } from "@material-ui/core/styles";
 import { palette as colors } from "../constants";
 import GlobalStyles from "../global-styles";
@@ -15,26 +16,14 @@ const { store, persistor } = createStore();
 
 const App = ({ Component, pageProps }: AppProps) => {
   const darkMode = store.getState().config.darkMode;
-  const theme = responsiveFontSizes(
-    createMuiTheme({
-      palette: {
-        type: darkMode ? "dark" : "light",
-        primary: {
-          main: colors.primary,
-        },
-        secondary: {
-          main: colors.secondary,
-        },
-      },
-    })
-  );
+  const theme = createTheme();
 
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <GlobalStyles theme={theme} />
         <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
+          <Component {...pageProps}/>
         </ThemeProvider>
       </PersistGate>
     </Provider>

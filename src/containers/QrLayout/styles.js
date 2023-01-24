@@ -31,15 +31,15 @@ export const CardContainer = styled(Paper)`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  padding: ${({ theme }) => theme.spacing(dimensions.XL)}px;
+  padding: 7px;
   justify-content: space-between;
   .MuiFormControl-root {
-    margin-top: ${({ theme }) => theme.spacing(dimensions.XS)}px;
+    margin-top: 3px;
   }
   ${CardBottom} {
-    margin-top: ${({ theme }) => theme.spacing(dimensions.M)}px;
+    margin-top: 5px;
     .MuiButtonBase-root:nth-child(2) {
-      margin-top: ${({ theme }) => theme.spacing(dimensions.XXS)}px;
+      margin-top: 9px;
     }
   }
 `;
@@ -50,5 +50,5 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: ${({ theme }) => theme.spacing(2)}px;
+  padding:5px;
 `;
