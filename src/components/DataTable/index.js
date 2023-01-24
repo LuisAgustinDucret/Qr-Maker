@@ -29,7 +29,7 @@ export default function DataTable({
   const renderRows = () => {
     const rows = data.map((item, index) => {
       const row = getKeys(item).map((rowValue) => {
-        return <TableCell key={item.id}>{item[rowValue]}</TableCell>;
+        return <TableCell key={item.id + index}>{item[rowValue]}</TableCell>;
       });
 
       row.push(
