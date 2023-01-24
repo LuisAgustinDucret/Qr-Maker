@@ -5,11 +5,32 @@ import { collection, addDoc, getDoc, doc } from "firebase/firestore";
 
 export const suscribeToQrs = (callback) => {
   try {
-    firebase.initializeApp(config);
+    db.ref()
+    .child('qrs')
+    .orderByChild("inactive")
+    .equalTo(false)
+    .on('value', (snapshot) => {
+      callback(snapshot.val() || []);
+    });
   } catch (e) {
     // console.log(firebase init error)
   }
 };
+
+
+/*export const suscribeToCategorias = (callback) => {
+  try {
+    db.ref()
+      .child('Categorias')
+      .orderByChild("inactive")
+      .equalTo(false)
+      .on('value', (snapshot) => {
+        callback(snapshot.val() || []);
+      });
+  } catch (error) {
+    throw error;
+  }
+};*/
 
 export const suscribeToCategorias = (callback) => {
   

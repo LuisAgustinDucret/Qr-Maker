@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@mui/icons-material/DeleteForever";
 
 import { Table, TableRow, TableHeader, TableCell, TableBody } from "./styles";
-//import { Row as TableRow } from "./styles";
+
 
 export default function DataTable({
   data,
@@ -51,10 +51,9 @@ export default function DataTable({
         </TableCell>
       );
 
-      return <TableRow key={data.id}>{row}</TableRow>;
+      return <TableRow key={item.id}>{row}</TableRow>;
     });
 
-    rows.push();
     return rows;
   };
   return (
