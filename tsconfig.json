@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.js", "src/pages/_app.js", "src/services/firebase.js", "src/components/DataTable/styles.js", "src/components/QrLayout.js", "src/components/DataTable.js"],
   "exclude": ["node_modules"]
 }

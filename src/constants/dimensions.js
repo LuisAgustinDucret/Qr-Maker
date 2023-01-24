@@ -16,4 +16,4 @@ const DIMENSIONS = {
     XXXL: 9,
   };
   
-  export default DIMENSIONS;
+  export default DIMENSIONS;  
