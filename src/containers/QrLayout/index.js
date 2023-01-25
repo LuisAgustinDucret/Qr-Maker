@@ -20,6 +20,8 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs"
+import { useRouter } from "next/router";
+
 //import CalendarMonthIcon  from "@mui/icons-material/CalendarMonthIcon";
 //import ArrowLeftIcon  from "@mui/icons-material/ArrowLeftIcon";
 //import ArrowRightIcon  from "@mui/icons-material/ArrowRightIcon";
@@ -34,7 +36,20 @@ const QrLayout = () => {
   const [creador, setCreador] = useState("");
   const [destinatario, setDestinatario] = useState("");
 
+  const router = useRouter();
   const dispatch = useDispatch();
+
+
+  const {
+    qrsd,
+
+  } = useSelector(({ qr }) => {
+    return {
+      qrsd: qr.qrsd,
+
+    };
+  });
+
 
   const {
     qrs,
@@ -50,6 +65,8 @@ const QrLayout = () => {
     dispatch(suscribeQrs());
   }, []);
 
+
+  
   const openModal = useCallback(
     (modalMode) => {
       dispatch(setModalVisibility({ visibility: true, mode: modalMode }));
@@ -93,19 +110,16 @@ const QrLayout = () => {
         destinatario,
         cantidadVecesUsado,
         cantidadGenerada,
+      }, (docRef) => {
+        router.replace(`/qrs/${docRef.id}`);
       });
     }
     closeModal();
     resetValues();
-  }, [
-    evento,
-    fechaLimite,
-    tipoUso,
-    creador,
-    destinatario,
-    cantidadVecesUsado,
-    cantidadGenerada,
-  ]);
+  }, [    evento,    fechaLimite,    tipoUso,    creador,    destinatario,    cantidadVecesUsado,    cantidadGenerada,  ]);
+
+
+
 
   const modificarQr = (index) => {
     const value = qrs.find((item, i) => {
@@ -120,7 +134,6 @@ const QrLayout = () => {
     const value = qrs.find((item, i) => {
       return i === index;
     });
-    console.log("QrDeleted", value);
     deleteQr(value.id);
   };
 
@@ -137,6 +150,7 @@ const QrLayout = () => {
 
   const handleChangeText = ({ target }) => {
     const { name, value } = target;
+
 
     switch (name) {
       case "evento":
@@ -169,6 +183,7 @@ const QrLayout = () => {
   const renderModalContent = useCallback(() => {
     return (
       <>
+
         <TextField
           name="evento"
           label="Evento"
@@ -192,18 +207,17 @@ const QrLayout = () => {
           label="CantidadVecesUsado"
           value={cantidadVecesUsado}
           onChange={handleChangeText}
-        />{
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-          <DateTimePicker
-          name="fechaLimiter"
-          label="fechaLimiter"
-          value={fechaLimite}
+        />
+        
+        <TextField
+          type="datetime-local"
           onChange={handleChangeText}
-          renderInput={(params) => <TextField type="datetime-local" {...params} />}
-          />
-          </LocalizationProvider>
-          }
+          name="fechaLimite"
+          label="fechaLimite"
+          value={fechaLimite}
+        />
+
+          
         <TextField
           name="creador"
           label="Creador"

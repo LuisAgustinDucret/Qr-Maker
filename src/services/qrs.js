@@ -1,7 +1,13 @@
+
 import { db } from "./firebase";
 export { db } from "./firebase";
-import { collection, addDoc, getDocs, doc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
+
+
+
 const qrsCollection = collection(db, "qrs");
+
 
 export const suscribeToQrs = async (callback) => {
   try {
@@ -16,15 +22,7 @@ export const suscribeToQrs = async (callback) => {
 
 export const suscribeToCategorias = (callback) => {};
 
-export const saveQr = async ({
-  evento,
-  fechaLimite,
-  tipoUso,
-  creador,
-  destinatario,
-  cantidadVecesUsado,
-  cantidadGenerada,
-}) => {
+export const saveQr = async ({evento, fechaLimite, tipoUso, creador, destinatario, cantidadVecesUsado, cantidadGenerada}, callback) => {
   try {
     const docRef = await addDoc(qrsCollection, {
       evento: evento,
@@ -35,13 +33,13 @@ export const saveQr = async ({
       cantidadVecesUsado: cantidadVecesUsado,
       cantidadGenerada: cantidadGenerada,
     });
-    // setDocId(docRef.id);
+    callback(docRef);
   } catch (error) {
     throw error;
   }
 };
 
-export const updateQr = ({
+export const updateQr = async ({
   id,
   evento,
   fechaLimite,
@@ -52,15 +50,17 @@ export const updateQr = ({
   cantidadGenerada,
 }) => {
   try {
-    return db.ref().child(`qrs/${id}`).update({
-      evento,
+    const product = doc(db, "qrs", id)
+    const data = {evento,
       fechaLimite,
       tipoUso,
       creador,
       destinatario,
       cantidadVecesUsado,
-      cantidadGenerada,
-    });
+      cantidadGenerada,}
+    await updateDoc(product, data)
+
+    
   } catch (error) {
     throw error;
   }

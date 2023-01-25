@@ -27,5 +27,7 @@ export const suscribeQrs = () => (dispatch) => {
     });
     //aca la data sigue bien
     dispatch(setQrs(arrQrs));
+    dispatch(setQrsd(arrQrs));
+
   });
 };

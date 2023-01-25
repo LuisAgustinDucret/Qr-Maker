@@ -17,8 +17,9 @@ export class QrsDatabase {
     this.creador = creador,
     this.destinatario = destinatario,
     this.tipoUso = tipoUso,
-    this.cantidadVecesUsado = cantidadGenerada,
-    this.cantidadGenerada = cantidadVecesUsado;
+    this.cantidadGenerada = cantidadGenerada;
+    this.cantidadVecesUsado = cantidadVecesUsado;
+
   }
 
   static propTypes = {
@@ -51,8 +52,9 @@ export class QrsDataTable {
     this.creador = creador,
     this.destinatario = destinatario,
     this.tipoUso = tipoUso,
-    this.cantidadVecesUsado = cantidadGenerada,
-    this.cantidadGenerada = cantidadVecesUsado;
+    this.cantidadGenerada = cantidadGenerada;
+    this.cantidadVecesUsado = cantidadVecesUsado;
+
   }
 
   static propTypes = {

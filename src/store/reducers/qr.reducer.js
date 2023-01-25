@@ -2,6 +2,7 @@ import { TYPE_SET_QRS, TYPE_SET_MODAL_VISIBILITY } from '../actions/qr.action';
 
 const initialState = {
   qrs: [],
+  qrsd: [],
   modal: { visibility: false, mode: '' },
 };
 
@@ -13,6 +14,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         qrs: payload,
       };
+
     case TYPE_SET_MODAL_VISIBILITY:
       return {
         ...state,
@@ -24,3 +26,4 @@ export default (state = initialState, { type, payload }) => {
       };
   }
 };
+

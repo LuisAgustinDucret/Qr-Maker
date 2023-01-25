@@ -7,10 +7,12 @@ function Qrs() {
   const goToHome = () => {
     router.replace("home");
   };
-
+  const goToQrsId = (id) => {
+    router.push(`/qrs/${id}`);
+  };
   return (
     <>
-      <QrContainer navigateToHome={goToHome} />
+       <QrContainer navigateToHome={goToHome} navigateToQrsId={goToQrsId}/>
     </>
   );
 }
