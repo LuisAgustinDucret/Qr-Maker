@@ -16,11 +16,18 @@ import Typography from "@mui/material/Typography";
 import { QrsDataTable } from "../../entities";
 import { getKeys, mapPropertiesToColumns } from "../../utils";
 import { suscribeQrs, setModalVisibility } from "../../store/actions/";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs from "dayjs"
+//import CalendarMonthIcon  from "@mui/icons-material/CalendarMonthIcon";
+//import ArrowLeftIcon  from "@mui/icons-material/ArrowLeftIcon";
+//import ArrowRightIcon  from "@mui/icons-material/ArrowRightIcon";
 
 const QrLayout = () => {
   const [id, setId] = useState("");
   const [evento, setEvento] = useState("");
-  const [fechaLimite, setFechaLimite] = useState("");
+  const [fechaLimite, setFechaLimite] = useState(dayjs('2014-08-18T21:11:54'));
   const [cantidadVecesUsado, setCantidadVecesUsado] = useState(0);
   const [cantidadGenerada, setCantidadGenerada] = useState(0);
   const [tipoUso, setTipoUso] = useState("");
@@ -185,13 +192,18 @@ const QrLayout = () => {
           label="CantidadVecesUsado"
           value={cantidadVecesUsado}
           onChange={handleChangeText}
-        />
-        <TextField
-          name="fechaLimite"
-          label="FechaLimite"
+        />{
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+          <DateTimePicker
+          name="fechaLimiter"
+          label="fechaLimiter"
           value={fechaLimite}
           onChange={handleChangeText}
-        />
+          renderInput={(params) => <TextField type="datetime-local" {...params} />}
+          />
+          </LocalizationProvider>
+          }
         <TextField
           name="creador"
           label="Creador"
@@ -242,7 +254,7 @@ const QrLayout = () => {
     });
     return columns;
   };
- 
+
   return (
     <>
       <Container>
