@@ -22,7 +22,7 @@ export default function DataTable({
       );
     });
 
-    columnsMap.push(<TableCell key='buttons' >{"Acciones"}</TableCell>);
+    columnsMap.push(<TableCell key={`actions`}>{"Acciones"}</TableCell>);
 
     return columnsMap;
   };
@@ -32,19 +32,19 @@ export default function DataTable({
       //a este data le esta llegando el id, y solo el evento
       const row = getKeys(item).map((rowValue) => {
         //index esta andando bien
-        return <TableCell key={`${item.id+index}`}>{item[rowValue]}</TableCell>;
+        return <TableCell key={`${item.id+item[rowValue]}`}>{item[rowValue]}</TableCell>;
       });
 
       row.push(
         <TableCell key={`${item.id}-buttons`}>
-          <IconButton
+          <IconButton key={`${item.id}-buttonEdit`}
             onClick={() => {
               onEditClick(index);
             }}
           >
             <EditIcon />
           </IconButton>
-          <IconButton
+          <IconButton key={`${item.id}-buttonDelete`}
             onClick={() => {
               onDeleteClick(index);
             }}
