@@ -1,19 +1,31 @@
 import PropTypes from "prop-types";
 
 export class QrsDatabase {
-  constructor(id, evento, fechaLimite) {
+  constructor(
+    id,
+    evento,
+    fechaLimite,
+    creador,
+    destinatario,
+    tipoUso,
+    cantidadGenerada,
+    cantidadVecesUsado
+  ) {
     this.id = id;
     this.evento = evento;
-    this.fechaLimite = fechaLimite;
-    this.destinatario = destinatario;
-    this.creador = creador;
-    this.cantidadGenerada = cantidadGenerada;
+    this.fechaLimite = fechaLimite,
+    this.creador = creador,
+    this.destinatario = destinatario,
+    this.tipoUso = tipoUso,
+    this.cantidadVecesUsado = cantidadGenerada,
+    this.cantidadGenerada = cantidadVecesUsado;
   }
 
   static propTypes = {
     id: PropTypes.string,
     evento: PropTypes.string,
-    fechaLimite: PropTypes.instanceOf(Date),
+    fechaLimite: PropTypes.number,
+    //fechaLimite: PropTypes.instanceOf(Date),
     creador: PropTypes.string,
     destinatario: PropTypes.string,
     tipoUso: PropTypes.string,
@@ -23,25 +35,35 @@ export class QrsDatabase {
 }
 
 export class QrsDataTable {
-  constructor(id, evento) {
+  constructor(
+    id,
+    evento,
+    fechaLimite,
+    creador,
+    destinatario,
+    tipoUso,
+    cantidadGenerada,
+    cantidadVecesUsado
+  ) {
     this.id = id;
     this.evento = evento;
-    this.fechaLimite = PropTypes.instanceOf(Date),
-    this.creador = PropTypes.string,
-    this.destinatario = PropTypes.string,
-    this.tipoUso = PropTypes.string,
-    this.cantidadVecesUsado = PropTypes.number,
-    this.cantidadGenerada = PropTypes.number
+    this.fechaLimite = fechaLimite,
+    this.creador = creador,
+    this.destinatario = destinatario,
+    this.tipoUso = tipoUso,
+    this.cantidadVecesUsado = cantidadGenerada,
+    this.cantidadGenerada = cantidadVecesUsado;
   }
 
   static propTypes = {
     id: PropTypes.string,
     evento: PropTypes.string,
-    fechaLimite: PropTypes.instanceOf(Date),
+    fechaLimite: PropTypes.number,
+    //fechaLimite: PropTypes.instanceOf(Date),
     creador: PropTypes.string,
     destinatario: PropTypes.string,
     tipoUso: PropTypes.string,
     cantidadVecesUsado: PropTypes.number,
-    cantidadGenerada: PropTypes.number
+    cantidadGenerada: PropTypes.number,
   };
 }

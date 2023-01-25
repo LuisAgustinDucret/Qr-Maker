@@ -25,7 +25,7 @@ export const suscribeQrs = () => (dispatch) => {
      dataObj.forEach((item) => {    //item es el id   
       arrQrs.push({ ...data[item] })
     });
-    /* console.log('typeof arrCategororias',typeof arrCategororias, arrCategororias, arrCategororias.length); */
+    //aca la data sigue bien
     dispatch(setQrs(arrQrs));
   });
 };

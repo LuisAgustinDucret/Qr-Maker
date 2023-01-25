@@ -9,7 +9,6 @@ const QrGenerate = () => {
     usadas: 2
   }
   const data = JSON.stringify(qr) // convierto los atributos a string
-  console.log("data: ", data);
   return (
     <QRCode value={data} />
   )

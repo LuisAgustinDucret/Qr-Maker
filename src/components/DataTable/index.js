@@ -15,25 +15,28 @@ export default function DataTable({
   onDeleteClick,
 }) {
   const renderColumns = () => {
-    const columnsMap = columns.map((column, index) => {
+    const columnsMap = columns.map((column,index) => {
+      //index andando bien.
       return (
-        <TableCell key={`${column.field + index}`}>{column.field}</TableCell>
+        <TableCell key={`${column.field+index}`}>{column.field}</TableCell>
       );
     });
 
-    columnsMap.push(<TableCell>{"Acciones"}</TableCell>);
+    columnsMap.push(<TableCell key='buttons' >{"Acciones"}</TableCell>);
 
     return columnsMap;
   };
 
   const renderRows = () => {
     const rows = data.map((item, index) => {
+      //a este data le esta llegando el id, y solo el evento
       const row = getKeys(item).map((rowValue) => {
-        return <TableCell key={item.id + index}>{item[rowValue]}</TableCell>;
+        //index esta andando bien
+        return <TableCell key={`${item.id+index}`}>{item[rowValue]}</TableCell>;
       });
 
       row.push(
-        <TableCell>
+        <TableCell key={`${item.id}-buttons`}>
           <IconButton
             onClick={() => {
               onEditClick(index);

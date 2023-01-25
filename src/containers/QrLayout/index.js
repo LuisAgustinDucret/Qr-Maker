@@ -33,7 +33,6 @@ const QrLayout = () => {
     qrs,
     modal: { isModalOpen, mode },
   } = useSelector(({ qr }) => {
-    console.log("qrs", qr);
     return {
       qrs: qr.qrs,
       modal: { isModalOpen: qr.modal.visibility, mode: qr.modal.mode },
@@ -46,7 +45,6 @@ const QrLayout = () => {
 
   const openModal = useCallback(
     (modalMode) => {
-      console.log("modalMode", modalMode);
       dispatch(setModalVisibility({ visibility: true, mode: modalMode }));
     },
     [setModalVisibility]
@@ -60,6 +58,11 @@ const QrLayout = () => {
     setId("");
     setEvento("");
     setFechaLimite("");
+    setTipoUso(""),
+      setCreador(""),
+      setDestinatario(""),
+      setCantidadVecesUsado(""),
+      setCantidadGenerada("");
   }, []);
 
   const handleGuardar = useCallback(() => {
@@ -118,6 +121,11 @@ const QrLayout = () => {
     setId(qr.id);
     setEvento(qr.evento);
     setFechaLimite(qr.fechaLimite);
+    setTipoUso(qr.tipoUso),
+      setCreador(qr.creador),
+      setDestinatario(qr.destinatario),
+      setCantidadVecesUsado(qr.cantidadVecesUsado),
+      setCantidadGenerada(qr.cantidadGenerada);
   };
 
   const handleChangeText = ({ target }) => {
@@ -229,17 +237,17 @@ const QrLayout = () => {
   }, [handleGuardar]);
 
   const renderColumn = () => {
-    const columns = getKeys(new QrsDataTable("", "", 0, 0, 0)).map((key) => {
+    const columns = getKeys(new QrsDataTable()).map((key) => {
       return mapPropertiesToColumns(key, 200);
     });
     return columns;
   };
-
+ 
   return (
     <>
       <Container>
         <Typography variant="h4" text-align="center">
-          Qrs
+          Muestra de Qrs generados.
         </Typography>
         <CardContainer width="100%" elevation={3}>
           <CardTop></CardTop>
@@ -249,22 +257,22 @@ const QrLayout = () => {
                 ({
                   id,
                   evento,
+                  fechaLimite,
+                  creador,
+                  destinatario,
                   tipoUso,
                   cantidadGenerada,
                   cantidadVecesUsado,
-                  limiteHorario,
-                  cerador,
-                  destinatario,
                 }) => {
                   return new QrsDataTable(
                     id,
                     evento,
+                    fechaLimite,
+                    creador,
+                    destinatario,
                     tipoUso,
                     cantidadGenerada,
-                    cantidadVecesUsado,
-                    limiteHorario,
-                    cerador,
-                    destinatario
+                    cantidadVecesUsado
                   );
                 }
               )}
