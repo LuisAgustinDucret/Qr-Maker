@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, doc } from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { db } from '../../services';
 import QRScanner from 'react-qr-scanner';
@@ -53,20 +53,19 @@ async function handleScan(data) {
 <div>
 {render === "" ?
 
-    <QRScanner 
-    onScan={handleScan}
-    facingMode='rear'
-    />  
+<QRScanner onScan={handleScan} facingMode='environment'/>
+
+
     
     
     : "" }
 
 
-{render != "" && render === "verde" ?
+{render== "verde" ?
 
 "PODES PASAR"
     
-    : "NO PODES PASAR" }
+    : render== "rojo" ? "NO PODES PASAR" : "" }
 
   
 
