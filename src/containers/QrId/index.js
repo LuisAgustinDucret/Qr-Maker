@@ -50,7 +50,7 @@ const QrId = () => {
 
 <>
 
-{QrGenerate(id)}
+
 <Container>
   <Typography variant="h4" text-align="center">
     Muestra de Qrs generados.
@@ -58,6 +58,7 @@ const QrId = () => {
   <CardContainer width="100%" elevation={3}>
     <CardTop></CardTop>
     <CardMiddle>
+    {QrGenerate(id)}
       <DataTable
         data={qrID.map(
           ({
