@@ -47,13 +47,20 @@ async function handleScan(data) {
     }
 
 
+    async function handleScan(data) {
+
+            setQrData(data);
+
+    }
+
+
   return (
  
 
 <div>
 {render === "" ?
 
-<QRScanner onScan={handleScan} facingMode='environment'/>
+<QRScanner onScan={handleScan} facingMode='user'/>
 
 
     
