@@ -28,7 +28,7 @@ async function handleScan(data) {
         if (data) {
             setQrData(data);
             try {
-                const doc = await getDoc( doc(db, "qrs", data) )
+                const doc = await qrsCollection.doc(data).get()
                 if (doc.exists) {
                     const data = doc.data();
                     product.data().evento === "Brutus park" ? setRender("verde") : setRender("rojo")
