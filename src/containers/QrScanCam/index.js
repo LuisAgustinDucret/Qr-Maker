@@ -48,7 +48,10 @@ async function handleScan(data) {
   return (
  
     <div>
-    <QRScanner onScan={handleScan} />
+    <QRScanner 
+    onScan={handleScan}
+    facingMode='environment'
+    />
 </div>
 );
 }
