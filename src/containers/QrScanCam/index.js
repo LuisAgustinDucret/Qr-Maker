@@ -15,7 +15,7 @@ const QrByScanCam = () => {
 
 
     const [qrData, setQrData] = useState('');
-
+    const [render, setRender] = useState('');
 
     
 
@@ -31,13 +31,13 @@ async function handleScan(data) {
                 const doc = await getDoc( doc(db, "qrs", data) )
                 if (doc.exists) {
                     const data = doc.data();
-                    altert("hay ID", id)
+                    product.data().evento === "Brutus park" ? setRender("verde") : setRender("rojo")
                     //validate the data
                   // if(data.isValid){
                     if(data.exists){
-                        altert("hay validacion", id)
                         //history.push('/successPage');
-                        router.replace(`/qrs/`);
+                        //router.replace(`/qrs/`);
+                        setQrData("hola")
                     }
                 }
             } catch (error) {
@@ -49,13 +49,30 @@ async function handleScan(data) {
 
   return (
  
-    <div>
+
+<div>
+{render === "" ?
+
     <QRScanner 
     onScan={handleScan}
     facingMode='rear'
-    />
-    {qrData}
+    />  
+    
+    
+    : "" }
+
+
+{render != "" && render === "verde" ?
+
+"PODES PASAR"
+    
+    : "NO PODES PASAR" }
+
+  
+
+{qrData}
 </div>
+
 );
 }
 
