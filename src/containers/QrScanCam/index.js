@@ -24,7 +24,7 @@ const QrByScanCam = () => {
      // }, []);
 
 
-async function handleScan(data) {
+async function handleScan2(data) {
         if (data) {
             setQrData(data);
             try {
@@ -47,7 +47,7 @@ async function handleScan(data) {
     }
 
 
-    async function handleScan(data) {
+     function handleScan(data) {
 
             setQrData(data);
 
@@ -60,7 +60,7 @@ async function handleScan(data) {
 <div>
 {render === "" ?
 
-<QRScanner onScan={handleScan} facingMode='user'/>
+<QRScanner onScan={handleScan}/>
 
 
     
