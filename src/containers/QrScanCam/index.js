@@ -52,6 +52,7 @@ async function handleScan(data) {
     onScan={handleScan}
     facingMode='environment'
     />
+    {qrData}
 </div>
 );
 }
