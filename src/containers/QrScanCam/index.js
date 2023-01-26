@@ -33,9 +33,11 @@ async function handleScan(data) {
                     const data = doc.data();
                     altert("hay ID", id)
                     //validate the data
-                    if(data.isValid){
+                  // if(data.isValid){
+                    if(data.exists){
                         altert("hay validacion", id)
                         //history.push('/successPage');
+                        router.replace(`/qrs/`);
                     }
                 }
             } catch (error) {
@@ -50,7 +52,7 @@ async function handleScan(data) {
     <div>
     <QRScanner 
     onScan={handleScan}
-    facingMode='environment'
+    facingMode='rear'
     />
     {qrData}
 </div>
