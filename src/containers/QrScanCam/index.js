@@ -16,8 +16,6 @@ function QrByScanCam() {
     const [qrData, setQrData] = useState('');
     //const history = useHistory();
 
-
-
     //Muestra o no QR
     const [ check, setCheck ] = useState('')
     const [ checkHandle, setCheckHandle ] = useState(0)
@@ -32,62 +30,18 @@ function QrByScanCam() {
     const [ creador, setCreador ] = useState('')
     const [ destinatario, setDestinatario ] = useState('')
     const [ id, setIdQr ] = useState('')
-   
-    
-  
-
-
-   
-  
-
-
-
 
     function handleError(err) {
         console.log(err);
     }
 
-    async function handleScan(data) {
-        if (data) {
-            setQrData(data);
-            try {
-                //const doc = await firestore.get({ collection: 'collectionName', doc: data });
-                //
-                if (doc.exists) {
-                    const data = doc.data();
-                    //validate the data
-                    if(data.isValid){
-                       // history.push('/successPage');
-                    }
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
-
-    /*async function handleScan2(id) {
-        if (id) {
-            const productSnapshot = await getDoc( doc(db, "qrs", id) )
-            if(productSnapshot.exists) {
-                console.log(productSnapshot.data().evento) 
-            }else{
-                console.log('El producto no existe')
-            }
-        } else {
-            console.log("No data received");
-        }
-    }*/
-
-
-    const getProductById = async (id) => {
+    const getQrById = async (id) => {
         if (id === null) {
             console.log("El id no puede ser nulo");
             return;
         }
-        
         const product = await getDoc( doc(db, "qrs", id.text) )
-        if(product.exists() && checkHandle === 0) {
+        if(product.exists()) {
             console.log(product.data())
             // seteo los valores a los useStates
             setIdQr(id.text);
@@ -109,19 +63,18 @@ function QrByScanCam() {
             if (fechaActual >= fechaLimiteFormat ||  cantidadVecesUsado >= cantidadGenerada) {
                 console.log("No podes pasar");
                 setCheck("No")
+                // Set Timeout 5 seg
                 setTimeout(() => {
                     setCheck("");
                   }, 5000);
             } else {
                 // hacer algo si se cumple la condicion
-
-
                 console.log("podes pasar");
                 const product = doc(db, "qrs", id.text)
         const data = {cantidadVecesUsado: +cantidadVecesUsado + 1}
-        setCheckHandle(1) 
         await updateDoc(product, data) + console.log("updateando qr")
 setCheck("Si")
+// Set Timeout 5 seg
 setTimeout(() => {
     setCheck("");
   }, 5000);
@@ -132,13 +85,12 @@ setTimeout(() => {
         }
     }
 
-
     return (
 
         <div >
 
         {check === "" ?
-            <QRScanner onScan={getProductById} onError={handleError} />: ""
+            <QRScanner onScan={getQrById} onError={handleError} />: ""
         }
 
 {check === "Si" ? 
