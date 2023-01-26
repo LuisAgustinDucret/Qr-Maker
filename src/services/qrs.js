@@ -1,7 +1,7 @@
 
 import { db } from "./firebase";
 export { db } from "./firebase";
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 
 
@@ -10,6 +10,17 @@ const qrsCollection = collection(db, "qrs");
 
 
 export const suscribeToQrs = async (callback) => {
+  try {
+    const data = await getDocs(qrsCollection);
+    const dataFinal = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    callback(dataFinal);
+    //aca estamos obteniendo bien la data
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const suscribeToQrID = async (callback) => {
   try {
     const data = await getDocs(qrsCollection);
     const dataFinal = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
