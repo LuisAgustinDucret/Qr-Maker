@@ -109,6 +109,9 @@ function QrByScanCam() {
             if (fechaActual >= fechaLimiteFormat ||  cantidadVecesUsado >= cantidadGenerada) {
                 console.log("No podes pasar");
                 setCheck("No")
+                setTimeout(() => {
+                    setCheck("");
+                  }, 5000);
             } else {
                 // hacer algo si se cumple la condicion
 
@@ -119,11 +122,13 @@ function QrByScanCam() {
         setCheckHandle(1) 
         await updateDoc(product, data) + console.log("updateando qr")
 setCheck("Si")
-      
+setTimeout(() => {
+    setCheck("");
+  }, 5000);
 
             }
         }else{
-            console.log('El producto no existe')
+            console.log('El QR no existe')
         }
     }
 
