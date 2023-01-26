@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useRouter } from "next/router";
-
-
 import QRScanner from 'react-qr-scanner'
-
-
 import { getDoc, updateDoc, doc, addDoc, collection } from "firebase/firestore"
 import { db } from '../../services/firebase';
-
-
-
+import {
+    CheckNo,
+    CheckSi,
+    CheckScanner,
+    CardMiddle,
+    CardBottom,
+  } from "./styles";
 
 
 
@@ -129,26 +128,16 @@ setCheck("Si")
     }
 
 
-
-    const updateQR = async (id) => {
-
-        const product = doc(db, "qrs", id)
-        const data = {evento: evento,fechaLimite: fechaLimite, creador: creador, destinatario: destinatario, tipoUso: tipoUso, cantidadGenerada: cantidadGenerada, cantidadVecesUsado: cantidadVecesUsado + 1}
-        await updateDoc(product, data)
-        console.log("qr actualziado");
-    }
-    
-
-
     return (
-        <div>
+
+        <div >
 
         {check === "" ?
-            <QRScanner onScan={getProductById} onError={handleError} /> : ""
+            <QRScanner onScan={getProductById} onError={handleError} />: ""
         }
 
 {check === "Si" ? 
-    <div> Podes pasar : <button onClick={() => setCheck("")}>Volver</button>  </div> : check === "No" ? <div> No Podes pasar : <button onClick={() => setCheck("")}>Volver</button> </div>: ""
+    <div> <CheckSi>Podes pasar : <button onClick={() => setCheck("")}>Volver</button>  </CheckSi> </div> : check === "No" ?  <div> <CheckNo>No Podes pasar : <button onClick={() => setCheck("")}>Volver</button> </CheckNo> </div>:""
 }
 
             
