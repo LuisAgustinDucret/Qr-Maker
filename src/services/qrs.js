@@ -20,7 +20,7 @@ export const suscribeToQrs = async (callback) => {
   }
 };
 
-export const suscribeToQrID = async (callback) => {
+/*export const suscribeToQrID = async (callback) => {
   try {
     const data = await getDocs(qrsCollection);
     const dataFinal = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -29,7 +29,22 @@ export const suscribeToQrID = async (callback) => {
   } catch (e) {
     console.log(e);
   }
+};*/
+
+export const suscribeToQrID = async (id, callback) => {
+  try {
+    const product = await getDoc( doc(db, "qrs", id) )
+    const toArray =  Object.entries(product.data());
+    const dataFinal = toArray
+    console.log("data service", dataFinal)
+    callback(dataFinal);
+  } catch (e) {
+    console.log(e);
+  }
 };
+
+
+
 
 export const suscribeToCategorias = (callback) => {};
 

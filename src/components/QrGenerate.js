@@ -3,7 +3,7 @@ import QRCode from 'qrcode.react'
 
 const QrGenerate = (props) => {
   return (
-      <QRCode value={props} />
+      <QRCode value={props} size={300}/>
   )
 }
 

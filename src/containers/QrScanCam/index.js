@@ -18,7 +18,7 @@ function QrByScanCam() {
 
     //Muestra o no QR
     const [ check, setCheck ] = useState('')
-    const [ checkHandle, setCheckHandle ] = useState(0)
+
 
     //Set QR Date
     const [ fechaLimite, setFechaLimite ] = useState('')

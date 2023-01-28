@@ -271,7 +271,9 @@ const QrLayout = () => {
 
   return (
     <>
+    
       <Container>
+      {console.log(qrs)}
         <Typography variant="h4" text-align="center">
           Muestra de Qrs generados.
         </Typography>
@@ -326,6 +328,7 @@ const QrLayout = () => {
         content={renderModalContent()}
         controls={renderModalControls()}
       />
+      
     </>
   );
 };

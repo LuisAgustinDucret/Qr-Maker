@@ -1,55 +1,75 @@
 import styled from 'styled-components';
 
-import Paper from '@mui/material/Paper';
+export const Container = styled.div`
+content: "";
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: #E8E8E8;
 
-import { dimensions } from '../../constants';
 
-export const Title = styled.div`
-  align-items: center;
+`;
+
+export const Card = styled.div`
+content: "";
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: white;
+width: 90vw;
+margin-bottom: 20px;
+border-radius: 10px;
+padding: 20px;
+
 `;
 
 export const CardTop = styled.div`
-    align-items: center;
+content: "";
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: black;
+width: auto;
+padding: 10px;
+border-radius: 10px;
+color: white;
+margin-top: 25px;
+margin-bottom: 10px;
+
 `;
 
-export const CardMiddle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+export const Line = styled.div`
+border-bottom: 2px solid;
+opacity: 0.2;
+margin-bottom: 10px;
+width: 90%;
+padding: 10px
+
+
 `;
 
-export const CardBottom = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+export const DataContainer = styled.div`
+
+width: 80%;
+padding: 10px
+list-style: none;
+
 `;
 
-export const CardContainer = styled(Paper)`
-  height: 100%;
-  width: 90%;
-  max-width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  padding: 7px;
-  justify-content: space-between;
-  .MuiFormControl-root {
-    margin-top: 3px;
-  }
-  ${CardBottom} {
-    margin-top: 5px;
-    .MuiButtonBase-root:nth-child(2) {
-      margin-top: 9px;
-    }
-  }
+export const DataOcultaContainer = styled.div`
+margin-bottom: 10px;
+width: 80%;
+padding: 10px
+list-style: none;
+
 `;
 
-export const Container = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding:5px;
-`;
 
+export const ButtonContainer = styled.div`
+
+
+`;

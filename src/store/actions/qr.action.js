@@ -42,14 +42,40 @@ export const setQrID = (qrID) => {
 };
 
 export const suscribeQrID = (id) => (dispatch) => {
-  return suscribeToQrID((data) => {
+  return suscribeToQrID(id, (data) => {
+    //console.log("data", data)
+    const newArray = [];
+    const newObject = {};
+    for (const key in data) {
+      newObject[data[key][0]] = data[key][1];
+    }
+    newArray.push(newObject);
+
+    const filteredByID = newArray;
+    console.log("final:", filteredByID)
+    dispatch(setQrID(filteredByID));
+  });
+};
+
+
+
+
+
+
+
+/*export const suscribeQrID = (id) => (dispatch) => {
+  return suscribeToQrID(id, (data) => {
+    //console.log("data", data)
     const dataObj = Object.keys(data);
     const arrQrs = [];
 
     dataObj.forEach((item) => {    //item es el id   
       arrQrs.push({ ...data[item] })
     });
-    const filteredByID = arrQrs.filter(item => item.id === id);
+    const filteredByID = arrQrs;
     dispatch(setQrID(filteredByID));
   });
-}; 
+}; */
+
+
+

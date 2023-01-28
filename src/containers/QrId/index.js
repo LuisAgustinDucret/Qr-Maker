@@ -4,17 +4,19 @@ import { useSelector, useDispatch } from "react-redux";
 import QrGenerate from "../../components/QrGenerate";
 import { suscribeQrID} from "../../store/actions/";
 import Modal from "../../components/Modal";
-import { Document, Page } from 'react-pdf';
 import Typography from "@mui/material/Typography";
 import DataTable from "../../components/DataTable";
 import { getKeys, mapPropertiesToColumns } from "../../utils";
 import { QrsDataTable } from "../../entities";
 import {
     Container,
-    CardContainer,
+    Card,
     CardTop,
-    CardMiddle,
-    CardBottom,
+    Line,
+    DataContainer,
+    DataOcultaContainer,
+    ButtonContainer,
+    ul,
   } from "./styles";
 
 const QrId = () => {
@@ -44,58 +46,66 @@ const QrId = () => {
         return columns;
       };
 
-  return (
- 
 
+  return (
 
 <>
+{console.log(qrID)}
+               
+<Container>   
 
 
-<Container>
-  <Typography variant="h4" text-align="center">
-    Muestra de Qrs generados.
-  </Typography>
-  <CardContainer width="100%" elevation={3}>
-    <CardTop></CardTop>
-    <CardMiddle>
-    {QrGenerate(id)}
-      <DataTable
-        data={qrID.map(
-          ({
 
-            id,
-            evento,
-            fechaLimite,
-            creador,
-            destinatario,
-            tipoUso,
-            cantidadGenerada,
-            cantidadVecesUsado,
-          }) => {
-            return new QrsDataTable(
-                "hola",
-              id,
-              evento,
-              fechaLimite,
-              creador,
-              destinatario,
-              tipoUso,
-              cantidadGenerada,
-              cantidadVecesUsado
-            );
-          }
-        )}
-        pageSize={10}
-        columns={renderColumn()}
+{ qrID.map( (qrs) => (
 
-      />
-      
-    </CardMiddle>
-  </CardContainer>
+
+  <div>
+    <CardTop>
+    <b> {qrs.evento}</b>
+      </CardTop >
+  
+<Card  >
+
+
+{QrGenerate(id)}
+<div>{qrs.id}</div>
+  <Line></Line>
+
+  <DataContainer>
+
+  <div>
+  <ul>
+
+  <li><b>Evento:</b> {qrs.evento}  </li>
+  <li><b>Tipo de QR:</b> {qrs.tipoUso}</li>
+  <li><b>Fecha Limite:</b> {qrs.fechaLimite} </li>
+  <li><b>Limite de Usos:</b> {qrs.cantidadGenerada}</li>
+  </ul>
+  </div>
+
+</DataContainer>
+
+
+        
+
+<Line></Line>
+
+
+<DataOcultaContainer>
+<ul>
+<p><b> Datos Ocultos</b></p>
+<li><b>Limite de Usos:</b> {qrs.cantidadVecesUsado}</li>
+<li><b>Creador:</b> {qrs.creador}</li>
+<li><b>Destinatario:</b> {qrs.destinatario}</li>
+</ul>
+</DataOcultaContainer>
+</Card></div>
+)) }
 </Container>
 
-</>
+       
 
+</>
 
 
 
