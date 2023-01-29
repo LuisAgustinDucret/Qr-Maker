@@ -1,23 +1,17 @@
-/*import React, { useState } from 'react';
-import QRScanner from 'react-qr-scanner'
+import React, { useState } from 'react';
+import QrReader from 'react-qr-scanner'
 import { getDoc, updateDoc, doc, addDoc, collection } from "firebase/firestore"
 import { db } from '../../services/firebase';
 import {
     CheckNo,
     CheckSi,
-    CheckScanner,
-    CardMiddle,
-    CardBottom,
 } from "./styles";
 
 function QrByScanCam() {
     const [qrData, setQrData] = useState('');
     //const history = useHistory();
-
     //Muestra o no QR
     const [check, setCheck] = useState('')
-
-
     //Set QR Date
     const [fechaLimite, setFechaLimite] = useState('')
     const [tipoUso, setTipoUso] = useState('')
@@ -87,7 +81,7 @@ function QrByScanCam() {
 
         <div >
             {check === "" ?
-                <QRScanner onScan={getQrById} onError={handleError} /> : ""
+                <QrReader onScan={getQrById} onError={handleError} /> : ""
             }
 
             {check === "Si" ?
@@ -98,4 +92,3 @@ function QrByScanCam() {
 }
 
 export default QrByScanCam;
-*/
