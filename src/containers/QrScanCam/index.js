@@ -8,28 +8,26 @@ import {
     CheckScanner,
     CardMiddle,
     CardBottom,
-  } from "./styles";
-
-
+} from "./styles";
 
 function QrByScanCam() {
     const [qrData, setQrData] = useState('');
     //const history = useHistory();
 
     //Muestra o no QR
-    const [ check, setCheck ] = useState('')
+    const [check, setCheck] = useState('')
 
 
     //Set QR Date
-    const [ fechaLimite, setFechaLimite ] = useState('')
-    const [ tipoUso, setTipoUso ] = useState('')
-    const [ cantidadGenerada, setCantidadGenerada ] = useState(0)
-    const [ cantidadVecesUsado, setCantidadVecesUsado ] = useState(0)
+    const [fechaLimite, setFechaLimite] = useState('')
+    const [tipoUso, setTipoUso] = useState('')
+    const [cantidadGenerada, setCantidadGenerada] = useState(0)
+    const [cantidadVecesUsado, setCantidadVecesUsado] = useState(0)
 
-    const [ evento, setEvento ] = useState('')
-    const [ creador, setCreador ] = useState('')
-    const [ destinatario, setDestinatario ] = useState('')
-    const [ id, setIdQr ] = useState('')
+    const [evento, setEvento] = useState('')
+    const [creador, setCreador] = useState('')
+    const [destinatario, setDestinatario] = useState('')
+    const [id, setIdQr] = useState('')
 
     function handleError(err) {
         console.log(err);
@@ -40,8 +38,8 @@ function QrByScanCam() {
             console.log("El id no puede ser nulo");
             return;
         }
-        const qr = await getDoc( doc(db, "qrs", id.text) )
-        if(qr.exists()) {
+        const qr = await getDoc(doc(db, "qrs", id.text))
+        if (qr.exists()) {
             console.log(qr.data())
             // seteo los valores a los useStates
             setIdQr(id.text);
@@ -60,27 +58,27 @@ function QrByScanCam() {
             // obtener fecha actual
             const fechaActual = new Date();
             // comparar fechas
-            if (fechaActual >= fechaLimiteFormat ||  cantidadVecesUsado >= cantidadGenerada) {
+            if (fechaActual >= fechaLimiteFormat || cantidadVecesUsado >= cantidadGenerada) {
                 console.log("No podes pasar");
                 setCheck("No")
                 // Set Timeout 5 seg
                 setTimeout(() => {
                     setCheck("");
-                  }, 5000);
+                }, 5000);
             } else {
                 // hacer algo si se cumple la condicion
                 console.log("podes pasar");
                 const qr = doc(db, "qrs", id.text)
-        const data = {cantidadVecesUsado: +cantidadVecesUsado + 1}
-        await updateDoc(qr, data) + console.log("updateando qr")
-setCheck("Si")
-// Set Timeout 5 seg
-setTimeout(() => {
-    setCheck("");
-  }, 5000);
+                const data = { cantidadVecesUsado: +cantidadVecesUsado + 1 }
+                await updateDoc(qr, data) + console.log("updateando qr")
+                setCheck("Si")
+                // Set Timeout 5 seg
+                setTimeout(() => {
+                    setCheck("");
+                }, 5000);
 
             }
-        }else{
+        } else {
             console.log('El QR no existe')
         }
     }
@@ -88,16 +86,13 @@ setTimeout(() => {
     return (
 
         <div >
+            {check === "" ?
+                <QRScanner onScan={getQrById} onError={handleError} /> : ""
+            }
 
-        {check === "" ?
-            <QRScanner onScan={getQrById} onError={handleError} />: ""
-        }
-
-{check === "Si" ? 
-    <div> <CheckSi>Podes pasar : <button onClick={() => setCheck("")}>Volver</button>  </CheckSi> </div> : check === "No" ?  <div> <CheckNo>No Podes pasar : <button onClick={() => setCheck("")}>Volver</button> </CheckNo> </div>:""
-}
-
-            
+            {check === "Si" ?
+                <div> <CheckSi key="checksi">Podes pasar : <button onClick={() => setCheck("")}>Volver</button>  </CheckSi> </div> : check === "No" ? <div> <CheckNo key="checkno" >No Podes pasar : <button onClick={() => setCheck("")}>Volver</button> </CheckNo> </div> : ""
+            }
         </div>
     );
 }

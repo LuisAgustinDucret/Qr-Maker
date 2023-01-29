@@ -1,32 +1,73 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+
+const QrScan = () => {
+    const [qr, setQr] = useState('');
+    const [qrId, setQrId] = useState('')
+    const [code, setCode] = useState('')
+    const [theArray, setTheArray] = useState([]);
+    //const qrpa;
+
+    useEffect(() => {
+        document.addEventListener('keypress', handleKeyPress);
+        return () => {
+            document.removeEventListener('keypress', handleKeyPress);
+        };
+    }, [theArray]);
+
+
     
-class QrScan extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
+    const handleKeyPress = event => {
+        //console.log('El código QR es:', event.key);
+        //console.log('El value es:', event.keyCode);
+        if(event.keyCode !== 13)
+            setTheArray(oldArray => [...oldArray, event.key]);
+        
+        console.log("arrayAsArray", theArray);
+    }
 
-  componentDidMount() {
-    document.addEventListener("keypress", this.handleKeyPress);
-  }
+    /*
+            let qrCodeString = theArray.join('');
+        console.log("br1", qrCodeString)
+    
+    
+    export const suscribeQrID = (id) => (dispatch) => {
+        return suscribeToQrID(id, (data) => {
+          //console.log("data", data)
+          const newArray = [];
+          const newObject = {};
+          for (const key in data) {
+            newObject[data[key][0]] = data[key][1];
+          }
+          newArray.push(newObject);
+      
+          const filteredByID = newArray;
+          dispatch(setQrID(filteredByID));
+        });
+      };*/
 
-  componentWillUnmount() {
-    document.removeEventListener("keypress", this.handleKeyPress);
-  }
 
-  handleKeyPress(event) {
-    console.log("La tecla presionada es: ", event.key);
-  }
 
-  render() {
+
+
+
     return <div>Presiona cualquier tecla para ver la consola</div>;
-  }
 }
 
 export default QrScan;
 
-
-
+/*
+QrScan.js?677f:18 La tecla presionada es:  7
+QrScan.js?677f:18 La tecla presionada es:  9
+QrScan.js?677f:18 La tecla presionada es:  3
+QrScan.js?677f:18 La tecla presionada es:  7
+QrScan.js?677f:18 La tecla presionada es:  0
+QrScan.js?677f:18 La tecla presionada es:  4
+3QrScan.js?677f:18 La tecla presionada es:  0
+QrScan.js?677f:18 La tecla presionada es:  9
+2QrScan.js?677f:18 La tecla presionada es:  1
+QrScan.js?677f:18 La tecla presionada es:  Enter
+*/
 /*const getQrById = async (id) => {
     if (id === null) {
         console.log("El id no puede ser nulo");

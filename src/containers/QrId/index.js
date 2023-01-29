@@ -68,7 +68,7 @@ const QrId = () => {
 
 
 {QrGenerate(id)}
-<div>{qrs.id}</div>
+
   <Line></Line>
 
   <DataContainer>

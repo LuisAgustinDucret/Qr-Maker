@@ -12,41 +12,42 @@ import {
     CardBottom,
 } from "./styles";
 
-
-
-
 function QrByScan() {
     const [qrData, setQrData] = useState('');
     const dispatch = useDispatch();
     //const history = useHistory();
     //Muestra o no QR
     const [check, setCheck] = useState('')
+  
+    const [codigoConcatenado, setCodigoConcatenado] = useState([]);
 
 
-    //Set QR Date
-    const [fechaLimite, setFechaLimite] = useState('')
-    const [tipoUso, setTipoUso] = useState('')
-    const [cantidadGenerada, setCantidadGenerada] = useState(0)
-    const [cantidadVecesUsado, setCantidadVecesUsado] = useState(0)
-
-    const [evento, setEvento] = useState('')
-    const [creador, setCreador] = useState('')
-    const [destinatario, setDestinatario] = useState('')
-    const [id, setIdQr] = useState('')
-
-    function handleError(err) {
-        console.log(err);
-    }
-    
-    const {
-        qrID,
-
-    } = useSelector(({ qr }) => {
-        return {
-            qrID: qr.qrID,
-
+    useEffect(() => {
+        document.addEventListener('keypress', handleKeyPress);
+        return () => {
+            document.removeEventListener('keypress', handleKeyPress);
         };
-    });
+    }, [codigoConcatenado]);
+
+
+
+    const handleKeyPress = event => {
+        //console.log('El código QR es:', event.key);
+        //console.log('El value es:', event.keyCode);
+        if (codigoConcatenado.length < 13) {
+            if (event.keyCode !== 13)
+            setCodigoConcatenado(oldArray => [...oldArray, event.key]);
+            if (codigoConcatenado.length === 12) {
+                let getStrindID = codigoConcatenado.join('');
+                getQrById(getStrindID)
+            setCodigoConcatenado([]);
+            }
+           
+        console.log("arrayAsArray", codigoConcatenado);
+        
+    }
+
+    }
 
     const getQrById = async (id) => {
         if (id === null) {
@@ -89,13 +90,18 @@ function QrByScan() {
             console.log('El QR no existe')
         }
     }
+
+
+
+
+
     return (
-
-        
-
         <div >
-<QrScan />
-           
+HOLA
+
+            {check === "Si" ?
+                <div> <CheckSi>Podes pasar : <button onClick={() => setCheck("")}>Volver</button>  </CheckSi> </div> : check === "No" ? <div> <CheckNo>No Podes pasar : <button onClick={() => setCheck("")}>Volver</button> </CheckNo> </div> : ""
+            }
         </div>
     );
 }
