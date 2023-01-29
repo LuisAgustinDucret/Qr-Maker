@@ -19,7 +19,7 @@ import { suscribeQrs, setModalVisibility } from "../../store/actions/";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs from "dayjs"
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
 
 //import CalendarMonthIcon  from "@mui/icons-material/CalendarMonthIcon";
@@ -29,7 +29,7 @@ import { useRouter } from "next/router";
 const QrLayout = () => {
   const [id, setId] = useState("");
   const [evento, setEvento] = useState("");
-  const [fechaLimite, setFechaLimite] = useState(dayjs('2014-08-18T21:11:54'));
+  const [fechaLimite, setFechaLimite] = useState(dayjs("2014-08-18T21:11:54"));
   const [cantidadVecesUsado, setCantidadVecesUsado] = useState(0);
   const [cantidadGenerada, setCantidadGenerada] = useState(0);
   const [tipoUso, setTipoUso] = useState("");
@@ -39,17 +39,11 @@ const QrLayout = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-
-  const {
-    qrsd,
-
-  } = useSelector(({ qr }) => {
+  const { qrsd } = useSelector(({ qr }) => {
     return {
       qrsd: qr.qrsd,
-
     };
   });
-
 
   const {
     qrs,
@@ -65,8 +59,6 @@ const QrLayout = () => {
     dispatch(suscribeQrs());
   }, []);
 
-
-  
   const openModal = useCallback(
     (modalMode) => {
       dispatch(setModalVisibility({ visibility: true, mode: modalMode }));
@@ -102,24 +94,32 @@ const QrLayout = () => {
         cantidadGenerada,
       });
     } else {
-      saveQr({
-        evento,
-        fechaLimite,
-        tipoUso,
-        creador,
-        destinatario,
-        cantidadVecesUsado,
-        cantidadGenerada,
-      }, (docRef) => {
-        router.replace(`/qrs/${docRef.id}`);
-      });
+      saveQr(
+        {
+          evento,
+          fechaLimite,
+          tipoUso,
+          creador,
+          destinatario,
+          cantidadVecesUsado,
+          cantidadGenerada,
+        },
+        (docRef) => {
+          router.replace(`/qrs/${docRef.id}`);
+        }
+      );
     }
     closeModal();
     resetValues();
-  }, [    evento,    fechaLimite,    tipoUso,    creador,    destinatario,    cantidadVecesUsado,    cantidadGenerada,  ]);
-
-
-
+  }, [
+    evento,
+    fechaLimite,
+    tipoUso,
+    creador,
+    destinatario,
+    cantidadVecesUsado,
+    cantidadGenerada,
+  ]);
 
   const modificarQr = (index) => {
     const value = qrs.find((item, i) => {
@@ -150,7 +150,6 @@ const QrLayout = () => {
 
   const handleChangeText = ({ target }) => {
     const { name, value } = target;
-
 
     switch (name) {
       case "evento":
@@ -183,7 +182,6 @@ const QrLayout = () => {
   const renderModalContent = useCallback(() => {
     return (
       <>
-
         <TextField
           name="evento"
           label="Evento"
@@ -208,7 +206,7 @@ const QrLayout = () => {
           value={cantidadVecesUsado}
           onChange={handleChangeText}
         />
-        
+
         <TextField
           type="datetime-local"
           onChange={handleChangeText}
@@ -217,7 +215,6 @@ const QrLayout = () => {
           value={fechaLimite}
         />
 
-          
         <TextField
           name="creador"
           label="Creador"
@@ -271,9 +268,8 @@ const QrLayout = () => {
 
   return (
     <>
-    
       <Container>
-      {console.log(qrs)}
+        {console.log(qrs)}
         <Typography variant="h4" text-align="center">
           Muestra de Qrs generados.
         </Typography>
@@ -328,7 +324,6 @@ const QrLayout = () => {
         content={renderModalContent()}
         controls={renderModalControls()}
       />
-      
     </>
   );
 };

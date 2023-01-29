@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import QRScanner from 'react-qr-scanner'
 import { getDoc, updateDoc, doc, addDoc, collection } from "firebase/firestore"
 import { db } from '../../services/firebase';
@@ -98,3 +98,4 @@ function QrByScanCam() {
 }
 
 export default QrByScanCam;
+*/
