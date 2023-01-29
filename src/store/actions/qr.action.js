@@ -52,7 +52,6 @@ export const suscribeQrID = (id) => (dispatch) => {
     newArray.push(newObject);
 
     const filteredByID = newArray;
-    console.log("final:", filteredByID)
     dispatch(setQrID(filteredByID));
   });
 };

@@ -40,21 +40,21 @@ function QrByScanCam() {
             console.log("El id no puede ser nulo");
             return;
         }
-        const product = await getDoc( doc(db, "qrs", id.text) )
-        if(product.exists()) {
-            console.log(product.data())
+        const qr = await getDoc( doc(db, "qrs", id.text) )
+        if(qr.exists()) {
+            console.log(qr.data())
             // seteo los valores a los useStates
             setIdQr(id.text);
-            setFechaLimite(product.data().fechaLimite);
-            setCantidadGenerada(product.data().cantidadGenerada);
-            setCantidadVecesUsado(product.data().cantidadVecesUsado);
-            setEvento(product.data().evento);
-            setCreador(product.data().creador);
-            setDestinatario(product.data().destinatario);
+            setFechaLimite(qr.data().fechaLimite);
+            setCantidadGenerada(qr.data().cantidadGenerada);
+            setCantidadVecesUsado(qr.data().cantidadVecesUsado);
+            setEvento(qr.data().evento);
+            setCreador(qr.data().creador);
+            setDestinatario(qr.data().destinatario);
             // obtener valores de la base de datos
-            const fechaLimite = product.data().fechaLimite;
-            const cantidadGenerada = product.data().cantidadGenerada;
-            const cantidadVecesUsado = product.data().cantidadVecesUsado;
+            const fechaLimite = qr.data().fechaLimite;
+            const cantidadGenerada = qr.data().cantidadGenerada;
+            const cantidadVecesUsado = qr.data().cantidadVecesUsado;
             // convertir fecha limite a fecha
             const fechaLimiteFormat = new Date(fechaLimite);
             // obtener fecha actual
@@ -70,9 +70,9 @@ function QrByScanCam() {
             } else {
                 // hacer algo si se cumple la condicion
                 console.log("podes pasar");
-                const product = doc(db, "qrs", id.text)
+                const qr = doc(db, "qrs", id.text)
         const data = {cantidadVecesUsado: +cantidadVecesUsado + 1}
-        await updateDoc(product, data) + console.log("updateando qr")
+        await updateDoc(qr, data) + console.log("updateando qr")
 setCheck("Si")
 // Set Timeout 5 seg
 setTimeout(() => {

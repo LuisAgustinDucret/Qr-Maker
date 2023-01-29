@@ -33,11 +33,10 @@ export const suscribeToQrs = async (callback) => {
 
 export const suscribeToQrID = async (id, callback) => {
   try {
-    const product = await getDoc( doc(db, "qrs", id) )
-    const toArray =  Object.entries(product.data());
-    const dataFinal = toArray
-    console.log("data service", dataFinal)
-    callback(dataFinal);
+    const qr = await getDoc( doc(db, "qrs", id) )
+    const toArray =  Object.entries(qr.data());
+    callback(toArray);
+  
   } catch (e) {
     console.log(e);
   }
@@ -76,7 +75,7 @@ export const updateQr = async ({
   cantidadGenerada,
 }) => {
   try {
-    const product = doc(db, "qrs", id)
+    const qr = doc(db, "qrs", id)
     const data = {evento,
       fechaLimite,
       tipoUso,
@@ -84,7 +83,7 @@ export const updateQr = async ({
       destinatario,
       cantidadVecesUsado,
       cantidadGenerada,}
-    await updateDoc(product, data)
+    await updateDoc(qr, data)
 
     
   } catch (error) {
