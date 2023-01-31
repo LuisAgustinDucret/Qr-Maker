@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import QRCode from 'qrcode';
 import { suscribeQrID } from "../../store/actions/";
-import { getKeys, mapPropertiesToColumns } from "../../utils";
-import { QrsDataTable } from "../../entities";
 import {
   Container,
   Card,
@@ -12,19 +10,17 @@ import {
   Line,
   DataContainer,
   DataOcultaContainer,
-  ButtonContainer,
-  ul,
-  styles,
 } from "./styles";
-import { PDFDownloadLink, View } from '@react-pdf/renderer';
-import { Document, Page, Image, Text, StyleSheet } from '@react-pdf/renderer';
 import QrGenerate from "../../components/QrGenerate";
+import ExportQR from "../../components/ExportQR";
+
 
 const QrId = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { id } = router.query;
   const [base64, setBase64] = useState(null);
+
 
   const { qrID } = useSelector(({ qr }) => {
     return {
@@ -46,9 +42,9 @@ const QrId = () => {
     handleQRCode();
   }, [id]);
 
+
   return (
     <>
-        
 
       <Container>
         {qrID.map((qrs) => (
@@ -57,7 +53,7 @@ const QrId = () => {
               <b> {qrs.evento}</b>
             </CardTop>
             <Card>
-            {QrGenerate(id)}
+              {QrGenerate(id)}
               <Line></Line>
               <DataContainer key={`${qrs.id}-DataContainer`}>
                 <div>
@@ -78,7 +74,6 @@ const QrId = () => {
                 </div>
               </DataContainer>
               <Line></Line>
-
               <DataOcultaContainer key={`${qrs.id}-DataOcultaContainer`}>
                 <ul>
                   <p>
@@ -98,37 +93,7 @@ const QrId = () => {
 
               <Line></Line>
 
-              <div>
-  {base64 && (
-    <PDFDownloadLink
-      document={
-<Document>
-  <Page style={styles.page}>
-  {qrID.map((qrs) => (
-      <div key={`${qrs.id}-div`}>
-        <View style={styles.view}><Image src={base64}  style={styles.QRImage}/></View>
-
-                <View style={styles.view}><Text>Evento: {qrs.evento}</Text></View>
-
-                <View style={styles.view}><Text>Tipo de QR: {qrs.tipoUso}</Text></View>
-
-                <View style={styles.view}><Text>Fecha Limite: {qrs.fechaLimite}</Text></View>
-
-                <View style={styles.view}><Text>Limite de Usos: {qrs.cantidadGenerada}</Text></View>
-
-            </div>
-    ))}
-
-  </Page>
-</Document>
-      }
-      fileName="qrCode.pdf"
-    >
-      {({ blob, url, loading, error }) => (loading ? 'Cargando...' : 'Descargar PDF')}
-    </PDFDownloadLink>
-  )}
-</div>
-
+              <ExportQR data={qrID[0]}  qrimg64={base64}  />
 
             </Card>
           </div>
@@ -136,6 +101,7 @@ const QrId = () => {
       </Container>
     </>
   );
-};
+}
 
 export default QrId;
+

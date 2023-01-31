@@ -75,7 +75,6 @@ export const ButtonContainer = styled.div`
 
 `;
 
-
 export const styles = StyleSheet.create({
 
     page: {
