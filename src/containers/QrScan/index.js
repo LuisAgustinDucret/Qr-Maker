@@ -32,8 +32,7 @@ function QrByScan() {
 
 
     const handleKeyPress = event => {
-        //console.log('El código QR es:', event.key);
-        //console.log('El value es:', event.keyCode);
+        // MODFICAR A 20 en ves de 13 para codigos QR(ahora sirve para codigos de barra)
         if (codigoConcatenado.length < 13) {
             if (event.keyCode !== 13)
             setCodigoConcatenado(oldArray => [...oldArray, event.key]);

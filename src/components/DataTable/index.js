@@ -3,6 +3,7 @@ import { getKeys } from "../../utils"
 import EditIcon from '@mui/icons-material/Edit'
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/DeleteForever";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import { Table, TableRow, TableHeader, TableCell, TableBody } from "./styles";
 
@@ -13,6 +14,7 @@ export default function DataTable({
   cantForPagpages,
   onEditClick,
   onDeleteClick,
+  onShowClick,
 }) {
   const renderColumns = () => {
     const columnsMap = columns.map((column,index) => {
@@ -50,6 +52,13 @@ export default function DataTable({
             }}
           >
             <DeleteIcon />
+          </IconButton>
+          <IconButton key={`${item.id}-buttonShow`}
+            onClick={() => {
+              onShowClick(index);
+            }}
+          >
+            <VisibilityIcon />
           </IconButton>
         </TableCell>
       );

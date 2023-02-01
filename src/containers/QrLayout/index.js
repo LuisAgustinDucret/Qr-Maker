@@ -137,6 +137,13 @@ const QrLayout = () => {
     deleteQr(value.id);
   };
 
+  const handleQrShow = (index) => {
+    const value = qrs.find((item, i) => {
+      return i === index;
+    });
+    router.replace(`/qrs/${value.id}`);
+  };
+
   const setQrValues = (qr) => {
     setId(qr.id);
     setEvento(qr.evento);
@@ -304,6 +311,7 @@ const QrLayout = () => {
               columns={renderColumn()}
               onEditClick={modificarQr}
               onDeleteClick={handleQrDelete}
+              onShowClick={handleQrShow}
             />
           </CardMiddle>
           <CardBottom>
