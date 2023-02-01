@@ -7,9 +7,15 @@ import {
     Text,
     PDFDownloadLink,
     View,
-  } from "@react-pdf/renderer";
+} from "@react-pdf/renderer";
+
+
+
 
 const DocumentPDF = ({ data, qrimg64 }) => {
+
+
+
 
     return (
         <Document>

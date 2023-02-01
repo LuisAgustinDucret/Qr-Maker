@@ -9,11 +9,9 @@ import {
   CardTop,
   Line,
   DataContainer,
-  DataOcultaContainer,
 } from "./styles";
 import QrGenerate from "../../components/QrGenerate";
 import ExportQR from "../../components/ExportQR";
-
 
 const QrId = () => {
   const dispatch = useDispatch();
@@ -45,7 +43,6 @@ const QrId = () => {
 
   return (
     <>
-
       <Container>
         {qrID.map((qrs) => (
           <div key={`${qrs.id}-div`}>
@@ -70,30 +67,22 @@ const QrId = () => {
                     <li>
                       <b>Limite de Usos:</b> {qrs.cantidadGenerada}
                     </li>
+                    <li>
+                      <b>Limite de Usos:</b> {qrs.cantidadVecesUsado}
+                    </li>
+                    <li>
+                      <b>Creador:</b> {qrs.creador}
+                    </li>
+                    <li>
+                      <b>Destinatario:</b> {qrs.destinatario}
+                    </li>
                   </ul>
                 </div>
               </DataContainer>
-              <Line></Line>
-              <DataOcultaContainer key={`${qrs.id}-DataOcultaContainer`}>
-                <ul>
-                  <p>
-                    <b> Datos Ocultos</b>
-                  </p>
-                  <li>
-                    <b>Limite de Usos:</b> {qrs.cantidadVecesUsado}
-                  </li>
-                  <li>
-                    <b>Creador:</b> {qrs.creador}
-                  </li>
-                  <li>
-                    <b>Destinatario:</b> {qrs.destinatario}
-                  </li>
-                </ul>
-              </DataOcultaContainer>
 
               <Line></Line>
 
-              <ExportQR data={qrID[0]}  qrimg64={base64}  />
+              <ExportQR data={qrID[0]} qrimg64={base64} />
 
             </Card>
           </div>
