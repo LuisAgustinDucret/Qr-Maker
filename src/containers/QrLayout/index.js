@@ -16,9 +16,6 @@ import Typography from "@mui/material/Typography";
 import { QrsDataTable } from "../../entities";
 import { getKeys, mapPropertiesToColumns } from "../../utils";
 import { suscribeQrs, setModalVisibility } from "../../store/actions/";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 

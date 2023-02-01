@@ -49,9 +49,8 @@ opacity: 0.2;
 margin-bottom: 10px;
 width: 90%;
 padding: 10px
-
-
 `;
+
 
 export const DataContainer = styled.div`
 
@@ -71,8 +70,7 @@ list-style: none;
 
 
 export const ButtonContainer = styled.div`
-
-
+display: flex;
 `;
 
 export const styles = StyleSheet.create({
@@ -97,6 +95,11 @@ export const styles = StyleSheet.create({
     Text: {
         color: 'black',
         size: '11em'
+    },
+
+   Button: {
+        padding: '10px',
+        margin: '20px',
     }
     
     })

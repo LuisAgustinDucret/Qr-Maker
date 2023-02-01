@@ -9,9 +9,13 @@ import {
   CardTop,
   Line,
   DataContainer,
+  ButtonContainer,
+  styles
 } from "./styles";
 import QrGenerate from "../../components/QrGenerate";
 import ExportQR from "../../components/ExportQR";
+import Button from "../../components/Button";
+
 
 const QrId = () => {
   const dispatch = useDispatch();
@@ -68,7 +72,7 @@ const QrId = () => {
                       <b>Limite de Usos:</b> {qrs.cantidadGenerada}
                     </li>
                     <li>
-                      <b>Limite de Usos:</b> {qrs.cantidadVecesUsado}
+                      <b>Cantidad Veces Usado:</b> {qrs.cantidadVecesUsado}
                     </li>
                     <li>
                       <b>Creador:</b> {qrs.creador}
@@ -81,9 +85,16 @@ const QrId = () => {
               </DataContainer>
 
               <Line></Line>
-
+              <ButtonContainer >
+              <Button 
+                size="small"
+                text="Volver"
+                onClick={() => {
+                router.replace(`/qrs/`);
+                }}
+              />
               <ExportQR data={qrID[0]} qrimg64={base64} />
-
+              </ButtonContainer>
             </Card>
           </div>
         ))}
